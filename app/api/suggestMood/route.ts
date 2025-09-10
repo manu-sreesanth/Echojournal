@@ -1,5 +1,6 @@
 import { Groq } from "groq-sdk";
 import { NextResponse } from "next/server";
+import type { ChatCompletionMessageParam } from "groq-sdk/resources/chat/completions";
 
 export const runtime = "edge";
 
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
       "overwhelmed", "tired", "okay", "calm"
     ];
 
-    const messages = [
+    const messages: ChatCompletionMessageParam[] = [
       {
         role: "system",
         content: `
@@ -57,11 +58,11 @@ Now analyze the next entry.
       max_tokens: 5,
     });
 
-    const raw = response.choices?.[0]?.message?.content?.trim().toLowerCase() ?? "";
+    const raw =
+      response.choices?.[0]?.message?.content?.trim().toLowerCase() ?? "";
     const suggestedMood = allowedMoods.includes(raw) ? raw : "okay";
 
     return NextResponse.json({ mood: suggestedMood });
-
   } catch (err) {
     console.error("Mood suggestion failed:", err);
     return NextResponse.json({ mood: "okay" });
