@@ -1,0 +1,422 @@
+@import "tailwindcss";
+
+/* ---------- Theme Colors ---------- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: #667eea;
+  --accent-dark: #764ba2;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ---------- Base Styles ---------- */
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s, color 0.3s;
+  min-height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Remove tap highlight on mobile */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Input, Select, Textarea ---------- */
+input,
+select,
+textarea {
+  background-color: transparent;
+  border: 1px solid #a9acaf; /* Slate-300 as default */
+  color: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Placeholder defaults */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(107, 114, 128, 0.86); /* Slate-500 */
+}
+
+/* Journal Editor overrides */
+.journal-editor input,
+.journal-editor textarea {
+  color: #1f2937; /* Slate-800 text */
+  border: 1px solid #a9acaf; /* Ensure visible border */
+}
+
+/* Journal Editor placeholders */
+.journal-editor input::placeholder,
+.journal-editor textarea::placeholder {
+  color: #6b7280a8; /* Slate-500 softer */
+}
+
+/* Focus states (shared for all inputs) */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6366f1; /* Indigo-500 */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+/* TomoChatDock overrides */
+.tomo-chat input,
+.tomo-chat textarea {
+  color: #1f2937; /* slate-800 */
+}
+
+.tomo-chat input::placeholder,
+.tomo-chat textarea::placeholder {
+  color: #6b7280b0; /* slate-500 */
+}
+
+
+.search-input::placeholder {
+  color: #6c6e71 !important; /* Tailwind's gray-400 */
+}
+
+
+.glass-input {
+  backdrop-filter: blur(12px);
+ 
+  border: 1px solid var(--glass-border);
+  color: rgb(255, 255, 255);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.glass-input:focus {
+  background: rgb(255, 255, 255);
+  color: black;
+  border-color: var(--accent-dark);
+  box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.3);
+  outline: none;
+}
+
+.glass-input:focus::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Extra Glass Styles ---------- */
+.liquid-glass {
+  backdrop-filter: blur(20px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Tag Input ---------- */
+.tag-input {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--glass-border);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.tag-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--accent);
+  outline: none;
+}
+
+
+
+/* ---------- Tooltip Styling ---------- */
+.tooltip-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(17, 24, 39, 0.9); /* slate-900 */
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+}
+
+/* ---------- Animated Grid Background ---------- */
+.animated-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 40px;
+  }
+}
+
+
+/* ---------- Animations ---------- */
+@keyframes slide-in {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.mood-transition {
+  transition: background 3s cubic-bezier(0.77, 0, 0.175, 1),
+              background-color 3s cubic-bezier(0.77, 0, 0.175, 1),
+              color 3s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+
+.mood-default {
+  background: linear-gradient(
+    to bottom right,
+    #fdf2f8,
+    #e0e7ff,
+    #f0fdfa
+  ); /* soft pink, indigo, green */
+}
+
+.mood-happy {
+  background: linear-gradient(to bottom right, #fef3c7, #fcd34d, #f87171);
+}
+
+.mood-sad {
+  background: linear-gradient(to bottom right, #bfdbfe, #93c5fd, #a5b4fc);
+}
+
+.mood-anxious {
+  background: linear-gradient(to bottom right, #fde68a, #fca5a5, #f87171);
+}
+
+.mood-tired {
+  background: linear-gradient(to bottom right, #cbd5e1, #e2e8f0, #f1f5f9);
+}
+
+.mood-okay {
+  background: linear-gradient(to bottom right, #e2e8f0, #f8fafc, #d1d5db);
+}
+
+.mood-excited {
+  background: linear-gradient(to bottom right, #fbcfe8, #f87171, #facc15);
+}
+
+.mood-calm {
+  background: linear-gradient(to bottom right, #a7f3d0, #6ee7b7, #34d399);
+}
+
+.mood-overwhelmed {
+  background: linear-gradient(to bottom right, #e9d5ff, #f9a8d4, #f87171);
+}
+
+.mood-angry {
+  background: linear-gradient(to bottom right, #fecaca, #f87171, #ef4444);
+}
+
+.dark-mode {
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+}
+
+
+
+/* ---------- Gradient background ---------- */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+}
+
+/* ---------- Glass effect container ---------- */
+.glass-effect {
+  backdrop-filter: blur(16px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.section-glass {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Input focus (non .glass-input) ---------- */
+.input-focus:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+/* ---------- Button hovers ---------- */
+.google-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.signup-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(168, 42, 252, 0.68);
+}
+
+/* ---------- Floating shapes ---------- */
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+.shape:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.shape:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+.shape:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox:checked {
+  background: #667eea;
+  border-color: #667eea;
+}
+.custom-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ---------- Headings ---------- */
+h1 {
+  color: #ffffff; /* Matches purple tone in gradient */
+}
+
+.goal-field {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* ---------- Progress Bars ---------- */
+.progress-bar {
+  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: white;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Notification box */
+.notification-box {
+  background: rgba(255, 235, 59, 0.15);
+  border: 1px solid rgba(255, 235, 59, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* Pulse animation */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

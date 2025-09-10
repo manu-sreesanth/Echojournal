@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.typing-animation {
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+  border-right: 3px solid #667eea;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #667eea }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3) }
+  to { box-shadow: 0 0 30px rgba(102, 126, 234, 0.6) }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.chat-bubble {
+  animation: bubbleIn 0.3s ease-out;
+}
+
+@keyframes bubbleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.progress-bar {
+  transition: width 0.5s ease-in-out;
+}
+
+.mood-selector {
+  transition: all 0.2s ease;
+}
+
+.mood-selector:hover {
+  transform: scale(1.1);
+}
+
+.action-item {
+  transition: all 0.3s ease;
+}
+
+.action-item.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "echojournal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "axios": "^1.10.0",
+    "chart.js": "^4.5.0",
+    "date-fns": "^4.1.0",
+    "firebase": "^11.9.1",
+    "firebase-admin": "^13.4.0",
+    "groq-sdk": "^0.27.0",
+    "jspdf": "^3.0.2",
+    "lodash.debounce": "^4.0.8",
+    "lucide-react": "^0.542.0",
+    "next": "15.3.4",
+    "openai": "^5.8.2",
+    "openai-edge": "^1.2.2",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* === Glass Effects === */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.liquid-glass:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  transform: translateY(-2px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-glass {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.743));
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.116);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+/* === Navigation === */
+.nav-item {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-item:hover::before {
+  left: 100%;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(8px);
+}
+
+.nav-item.active {
+  background: rgba(99, 102, 241, 0.2);
+  border-left: 3px solid #6366f1;
+}
+
+/* === Guide Me Button === */
+.guide-me-button {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.guide-me-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.8s ease;
+}
+
+.guide-me-button:hover::before {
+  left: 100%;
+}
+
+.guide-me-button:hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  transform: translateX(12px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.guide-me-glow {
+  animation: guide-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes guide-glow {
+  from {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3), 0 0 30px rgba(139, 92, 246, 0.2);
+  }
+  to {
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.5), 0 0 50px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.guide-me-icon {
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* === Background Grid === */
+.animated-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* === Card Effects === */
+.journal-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+}
+
+.journal-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.journal-editor {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.journal-editor textarea {
+  background: transparent;
+  resize: none;
+}
+
+.journal-editor textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* === Mood Options === */
+.mood-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+}
+
+.mood-option:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mood-option.selected {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.2);
+}
+
+/* === Tag Input === */
+.tag-input {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tag-input:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* === Dark Mode === */
+.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+}
+
+.dark-mode .sidebar-glass {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .liquid-glass {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mood-transition {
+  transition: background 3s cubic-bezier(0.77, 0, 0.175, 1),
+              background-color 3s cubic-bezier(0.77, 0, 0.175, 1),
+              color 3s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+
+/* === Mood Transition Layer System === */
+.mood-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.mood-bg {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1.8s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+}
+
+.mood-bg.active {
+  opacity: 1;
+}
+
+/* === Mood Gradients === */
+.mood-happy {
+  background: linear-gradient(to bottom right, #fef3c7, #fcd34d, #f87171);
+}
+
+.mood-sad {
+  background: linear-gradient(to bottom right, #bfdbfe, #93c5fd, #a5b4fc);
+}
+
+.mood-anxious {
+  background: linear-gradient(to bottom right, #fde68a, #fca5a5, #f87171);
+}
+
+.mood-tired {
+  background: linear-gradient(to bottom right, #cbd5e1, #e2e8f0, #f1f5f9);
+}
+
+.mood-okay {
+  background: linear-gradient(to bottom right, #e2e8f0, #f8fafc, #d1d5db);
+}
+
+.mood-excited {
+  background: linear-gradient(to bottom right, #fbcfe8, #f87171, #facc15);
+}
+
+.mood-calm {
+  background: linear-gradient(to bottom right, #a7f3d0, #6ee7b7, #34d399);
+}
+
+.mood-overwhelmed {
+  background: linear-gradient(to bottom right, #e9d5ff, #f9a8d4, #f87171);
+}
+
+.mood-angry {
+  background: linear-gradient(to bottom right, #fecaca, #f87171, #ef4444);
+}
+
+.dark-mode {
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+}
+
