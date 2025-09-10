@@ -3,7 +3,7 @@ import { adminDB } from "@/lib/firebaseAdmin";
 import { GuideSession, MentoringOutput } from "@/lib/guide-me/types";
 import { callGroq } from "@/lib/llm/groqClient";
 import { getAgentMemoryAdmin } from "@/firebase/firestoreFunctionsAdmin"; // ✅ assuming you already have this helper
-import { KAI_GUIDE_PROMPT, KAI_REFLECT_PROMPT } from "@/agents/prompts/guide-me";
+import { KAI_GUIDE_PROMPT, KAI_REFLECT_PROMPT } from "@/agents/prompts/guideme";
 
 
 
