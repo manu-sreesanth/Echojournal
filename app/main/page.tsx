@@ -82,12 +82,10 @@ export default function MainPage() {
   }
 
 
-
   // ⚠️ Don’t render anything while redirecting
   if (!uid) {
     return null;
   }
-
 
 return (
       <div
@@ -95,7 +93,6 @@ return (
       darkMode ? "dark-mode" : `mood-${mood || "default"}`
     }`}
   >
-
 
       {/* Sidebar */}
       <Sidebar
@@ -142,7 +139,7 @@ return (
       {showIntro && (
         <TomoIntro
           onFinish={() => {
-           // sessionStorage.setItem("tomoIntroShown", "true");
+            sessionStorage.setItem("tomoIntroShown", "true");
             setShowIntro(false);
           }}
         />

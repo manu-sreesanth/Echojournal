@@ -267,8 +267,8 @@ const lines: Token[][] = [
 
   // line 14
   [
-    { text: "Inside this app both of us are the important ", style: "" },
-    { text: "thing,", style: "" },
+    { text: "Inside this app both of us are the most important ", style: "" },
+    { text: "features,", style: "" },
     { text: " but there are a lot of other hidden and unhidden AI ", style: "" },
     { text: "features.", style: "" },
     { text: " Go and find ", style: "" },
@@ -420,7 +420,7 @@ const effectsConfigPerLine: Record<
     
   },
   14: {
-    "thing,": { speed: 25, pause: 700 },
+    "features,": { speed: 25, pause: 700 },
     "features.": { speed: 25, pause: 700 },
     "them.,": { speed: 25, pause: 700 },
     "...": { speed: 500, pause: 500 },
