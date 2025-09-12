@@ -40,12 +40,7 @@ export default function MainPage() {
   const [mood, setMood] = useState<string>("default");
   const [uid, setUid] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-    const [showIntro, setShowIntro] = useState(() => {
-    if (typeof window !== "undefined") {
-      return !sessionStorage.getItem("tomoIntroShown");
-    }
-    return true;
-  });
+  const [showIntro, setShowIntro] = useState(false);
 
   // 📝 Persist current view
   useEffect(() => {
@@ -72,6 +67,22 @@ export default function MainPage() {
     }
   }, [uid, loading, router]);
 
+
+// 🟡 Count sessions with localStorage
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  let count = parseInt(localStorage.getItem("sessionCount") || "0", 10);
+  count += 1;
+  localStorage.setItem("sessionCount", count.toString());
+
+  // ✅ Show Tomo on first session OR every 5th session
+  if (count === 1 || count % 5 === 0) {
+    setShowIntro(true);
+  }
+}, []);
+
+
   // 🔄 Show loader while checking auth
   if (loading) {
     return (
@@ -81,19 +92,17 @@ export default function MainPage() {
     );
   }
 
-
   // ⚠️ Don’t render anything while redirecting
   if (!uid) {
     return null;
   }
 
-return (
-      <div
-    className={`min-h-screen flex mood-transition ${
-      darkMode ? "dark-mode" : `mood-${mood || "default"}`
-    }`}
-  >
-
+  return (
+    <div
+      className={`min-h-screen flex mood-transition ${
+        darkMode ? "dark-mode" : `mood-${mood || "default"}`
+      }`}
+    >
       {/* Sidebar */}
       <Sidebar
         activeView={view}
@@ -139,7 +148,6 @@ return (
       {showIntro && (
         <TomoIntro
           onFinish={() => {
-            sessionStorage.setItem("tomoIntroShown", "true");
             setShowIntro(false);
           }}
         />
@@ -147,6 +155,7 @@ return (
     </div>
   );
 }
+
 
 
 
