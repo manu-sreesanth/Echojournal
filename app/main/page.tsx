@@ -77,7 +77,7 @@ useEffect(() => {
   localStorage.setItem("sessionCount", count.toString());
 
   // ✅ Show Tomo on first session OR every 5th session
-  if (count === 1 || count % 5 === 0) {
+  if (count === 1 || count % 20 === 0) {
     setShowIntro(true);
   }
 }, []);
