@@ -53,10 +53,10 @@ export const getMoodMessage = (mood: string) => {
 export const getMoodFromScore = (score: number): string => {
   if (score <= 1.5) return "sad";
   if (score <= 2.5) return "angry";
-  if (score <= 3.5) return "anxious";
-  if (score <= 4.5) return "tired";
-  if (score <= 5.5) return "okay";
-  if (score <= 6.5) return "calm";
+  if (score <= 4.5) return "anxious";
+  if (score <= 5.5) return "tired";
+  if (score <= 6.5) return "okay";
+  if (score <= 7.5) return "calm";
   if (score <= 8.5) return "happy";
   return "excited";
 };
