@@ -11,6 +11,7 @@ import Analytics from "@/components/main/analytics";
 import MyEntries from "@/components/main/MyEntries";
 import GuideMePanel from "@/components/main/GuideMe/GuideMePanel";
 import Dashboard from "@/components/main/Dashboard";
+import TomoIntro from "@/components/main/TomoIntro";
 
 import "./main.css";
 
@@ -39,6 +40,12 @@ export default function MainPage() {
   const [mood, setMood] = useState<string>("default");
   const [uid, setUid] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+    const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !sessionStorage.getItem("tomoIntroShown");
+    }
+    return true;
+  });
 
   // 📝 Persist current view
   useEffect(() => {
@@ -74,10 +81,13 @@ export default function MainPage() {
     );
   }
 
+
+
   // ⚠️ Don’t render anything while redirecting
   if (!uid) {
     return null;
   }
+
 
 return (
       <div
@@ -127,6 +137,16 @@ return (
           </div>
         )}
       </main>
+
+      {/* 🟡 Overlay Intro */}
+      {showIntro && (
+        <TomoIntro
+          onFinish={() => {
+           // sessionStorage.setItem("tomoIntroShown", "true");
+            setShowIntro(false);
+          }}
+        />
+      )}
     </div>
   );
 }
