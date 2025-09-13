@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase/firebaseConfig";
+import { auth, db } from "@/firebase/firebaseConfig";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 import Sidebar from "@/components/main/Sidebar";
 import JournalEditor from "@/components/main/JournalEditor";
@@ -67,21 +68,36 @@ export default function MainPage() {
     }
   }, [uid, loading, router]);
 
+  // 🟡 Check Firestore for intro status
+  useEffect(() => {
+    if (!uid) return;
 
-// 🟡 Count sessions with localStorage
-useEffect(() => {
-  if (typeof window === "undefined") return;
+    const checkIntro = async () => {
+      const userDocRef = doc(db, "users", uid, "settings", "app");
+      const snap = await getDoc(userDocRef);
 
-  let count = parseInt(localStorage.getItem("sessionCount") || "0", 10);
-  count += 1;
-  localStorage.setItem("sessionCount", count.toString());
+      if (!snap.exists()) {
+        // First time login → create doc and show intro
+        await setDoc(userDocRef, { hasSeenIntro: false });
+        setShowIntro(true);
+      } else {
+        const data = snap.data();
+        if (!data.hasSeenIntro) {
+          setShowIntro(true);
+        }
+      }
+    };
 
-  // ✅ Show Tomo on first session OR every 5th session
-  if (count === 1 || count % 20 === 0) {
-    setShowIntro(true);
-  }
-}, []);
+    checkIntro();
+  }, [uid]);
 
+  const handleIntroFinish = async () => {
+    if (uid) {
+      const userDocRef = doc(db, "users", uid, "settings", "app");
+      await updateDoc(userDocRef, { hasSeenIntro: true });
+    }
+    setShowIntro(false);
+  };
 
   // 🔄 Show loader while checking auth
   if (loading) {
@@ -145,13 +161,7 @@ useEffect(() => {
       </main>
 
       {/* 🟡 Overlay Intro */}
-      {showIntro && (
-        <TomoIntro
-          onFinish={() => {
-            setShowIntro(false);
-          }}
-        />
-      )}
+      {showIntro && <TomoIntro onFinish={handleIntroFinish} />}
     </div>
   );
 }
