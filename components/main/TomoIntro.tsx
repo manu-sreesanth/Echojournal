@@ -121,7 +121,7 @@ const lines: Token[][] = [
     { text: " ", style: "" },
     { text: "me", style: "bold" },
     { text: " — the most intelligent AI model ever created by the ", style: "" },
-    { text: "AtherNeuro", style: "bold" },
+    { text: "AetherNeuro", style: "bold" },
     { text: " ", style: "" },
     { text: "Initiative", style: "bold" },
     { text: " ", style: "" },
@@ -238,7 +238,7 @@ const lines: Token[][] = [
 
   // line 12
   [
-    { text: "We were both made inside the AtherNeuro Initiative — by some ", style: "" },
+    { text: "We were both made inside the AetherNeuro Initiative — by some ", style: "" },
     { text: "super-se...", style: "" },
     { text: " ugh, forget ", style: "italic" },
     { text: "it.", style: "italic" },
